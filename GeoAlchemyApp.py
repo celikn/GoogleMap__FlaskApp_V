@@ -38,6 +38,7 @@ class Road(Base):
 metadata.drop_all()
 metadata.create_all()
 
+
 session = sessionmaker(bind=engine)()
 # Add objects.  We can use strings...
 session.add_all([
@@ -47,6 +48,20 @@ session.add_all([
          Road(name='Graeme Ave', geom='LINESTRING(189412 252431,189631 259122)'),
          Road(name='Phil Tce', geom='LINESTRING(190131 224148,190871 228134)'),
      ])
+
+
+
+
+
+session.add_all([
+         Road(name='Jeff Rd', geom='LINESTRING(191232 243118,191108 243242)'),
+         Road(name='Geordie Rd', geom='LINESTRING(189141 244158,189265 244817)'),
+         Road(name='Paul St', geom='LINESTRING(192783 228138,192612 229814)'),
+         Road(name='Graeme Ave', geom='LINESTRING(189412 252431,189631 259122)'),
+         Road(name='Phil Tce', geom='LINESTRING(190131 224148,190871 228134)'),
+         Spot(name='test 1',geom='POINT(39.9130572 32.7892743)'),
+     ])
+
 session.commit()
 r2 = session.query(Road).filter_by(name='Paul St').first()
 
@@ -58,6 +73,15 @@ query = session.query(Road.name,
                       .label('bufferarea'))
 for row in query:
     print ('%s: %f' % (row.name, row.bufferarea))
+
+
+query = session.query(Spot.name,
+                      func.ST_X(Spot.geom).label('X'),func.ST_Y(Spot.geom).label('Y'))
+for row in query:
+    print ('%s: %f  , %f ' % (row.name, row.X, row.Y))
+
+
+
 
 
 # @appgeo.route("/")

@@ -16,7 +16,7 @@
 
 
         <h2> Template function with multiple markers </h2>
-        {% with map=googlemap_obj("another-map", 39.913057,32.7892743, markers=[(39.913057,32.7892743), (39.913057,32.7892743)]) %}
+        {% with map=googlemap_obj("another-map", 39.913057,32.7892743, markers=[(39.913057,32.7892743), (39.913057,32.79388)]) %}
             {{map.html}}
             {{map.js}}
         {% endwith %}

@@ -18,12 +18,7 @@
           new ol.layer.Tile({
             source: new ol.source.OSM()
           }),
-          new ol.layer.Vector({
-            source: new ol.source.Vector({
-              url: 'data/geojson/countries.geojson',
-              format: new ol.format.GeoJSON()
-            })
-          })
+
         ],
         target: 'map',
         controls: ol.control.defaults({

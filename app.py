@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
-
 app = Flask(__name__, template_folder="templates")
 GoogleMaps(app)
 
@@ -12,14 +11,14 @@ def mapview():
         identifier="view-side",
         lat=39.9130572,
         lng=32.7892743,
-        markers=[(37.4419, -122.1419)]
+        markers=[(39.9130572, 32.7892743)]
     )
     sndmap = Map(
         identifier="sndmap",
         lat=39.9130572,
         lng=32.7892743,
-        markers={'http://maps.google.com/mapfiles/ms/icons/green-dot.png':[(37.4419, -122.1419)],
-                 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png':[(37.4300, -122.1400)]}
+        markers={'http://maps.google.com/mapfiles/ms/icons/green-dot.png':[(39.9130572, 32.7892743)],
+                 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png':[(39.9130572, 32.7892743)]}
     )
     return render_template('index.html', mymap=mymap, sndmap=sndmap)
 
